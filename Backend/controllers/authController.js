@@ -7,7 +7,7 @@ const secretKey = process.env.JWT_SECRET;
 async function registerUser( req, res ) {
     let { firstName, lastName, username, password } = req.body;
     try {
-        const duplicate = await Users.findOne({username});
+        const duplicate = await Users.find({username});
         if (duplicate && duplicate.length > 0) { return res.status(400).send({ message : 'User already registered with this username '}); }
         
         let user =  new Users({ firstName, lastName, username, password });
